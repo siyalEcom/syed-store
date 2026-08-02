@@ -2,48 +2,463 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>My Store</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<title>Syed Store — Premium Quality, Honest Prices</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink: #15130f;
+    --charcoal: #211d17;
+    --cream: #F7F2E9;
+    --card: #ffffff;
+    --gold: #C6992F;
+    --gold-deep: #9C7620;
+    --emerald: #0F3D34;
+    --emerald-deep: #0A2C25;
+    --line: #E8E0D0;
+    --muted: #8a8270;
+    --wa: #22C35E;
+  }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+  body{
+    font-family:'Inter', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    -webkit-font-smoothing:antialiased;
+    padding-bottom: 74px;
+  }
+  h1,h2,h3,.brandname{ font-family:'Fraunces', serif; }
+  a{ text-decoration:none; color:inherit; }
+  img{ max-width:100%; display:block; }
+  .wrap{ max-width:1080px; margin:0 auto; padding:0 18px; }
+  ::selection{ background: var(--gold); color:#fff; }
 
-<!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '27540663102239973');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=27540663102239973&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
+  /* ---------- Header ---------- */
+  header{
+    position:sticky; top:0; z-index:80;
+    background: rgba(247,242,233,.92);
+    backdrop-filter: blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .header-row{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:12px 18px;
+  }
+  .brand{ display:flex; align-items:center; gap:9px; }
+  .brand-mark{
+    width:36px; height:36px; border-radius:9px;
+    background: var(--ink);
+    display:flex; align-items:center; justify-content:center;
+    color: var(--gold); font-family:'Fraunces',serif; font-weight:700; font-size:19px;
+    position:relative;
+  }
+  .brand-mark::after{
+    content:""; position:absolute; inset:-3px;
+    border:1px solid var(--gold); border-radius:11px; opacity:.5;
+  }
+  .brandname{ font-size:18px; font-weight:600; letter-spacing:.2px; }
+  .brandname em{ font-style:normal; color: var(--gold-deep); }
+  .brand-tag{ display:block; font-size:8.5px; letter-spacing:1.6px; color:var(--muted); font-family:'Inter'; margin-top:1px; text-transform:uppercase; }
+  .header-actions{ display:flex; align-items:center; gap:16px; }
+  .icon-btn{ position:relative; color:var(--ink); }
+  .icon-btn svg{ width:20px; height:20px; }
+  .badge{
+    position:absolute; top:-7px; right:-8px;
+    background: var(--emerald); color:#fff;
+    font-size:9px; font-weight:700; width:16px; height:16px;
+    border-radius:50%; display:flex; align-items:center; justify-content:center;
+  }
 
+  /* ---------- Hero ---------- */
+  .hero{
+    background: radial-gradient(120% 140% at 100% 0%, #163d34 0%, var(--emerald-deep) 55%, var(--ink) 100%);
+    color:#fff; padding: 34px 18px 30px; position:relative; overflow:hidden;
+  }
+  .hero-ring{
+    position:absolute; right:-70px; top:20px; width:230px; height:230px;
+    border-radius:50%; border:1px solid rgba(198,153,47,.35);
+  }
+  .hero-ring2{
+    position:absolute; right:-30px; top:60px; width:150px; height:150px;
+    border-radius:50%; border:1px solid rgba(198,153,47,.25);
+  }
+  .kicker{
+    display:inline-flex; align-items:center; gap:6px;
+    font-size:11px; letter-spacing:1.6px; color:var(--gold);
+    text-transform:uppercase; font-weight:600; margin-bottom:10px;
+  }
+  .kicker .seed{ width:5px; height:5px; border-radius:50%; background:var(--gold); }
+  .hero h1{
+    font-size:32px; line-height:1.12; font-weight:600; max-width:320px;
+  }
+  .hero h1 .accent{ color: var(--gold); font-style:italic; }
+  .hero p{ margin-top:12px; font-size:13.5px; color:#c9d3cf; max-width:300px; line-height:1.6; }
+  .hero-ctas{ display:flex; gap:10px; margin-top:20px; }
+  .btn{
+    display:inline-flex; align-items:center; gap:7px;
+    font-family:'Inter'; font-weight:700; font-size:13px;
+    padding:12px 20px; border-radius:999px; border:none; cursor:pointer;
+  }
+  .btn-gold{ background:var(--gold); color:var(--ink); }
+  .btn-outline{ background:transparent; color:#fff; border:1px solid rgba(255,255,255,.35); }
+  .btn svg{ width:15px; height:15px; }
+
+  .trust-strip{
+    display:flex; gap:0; margin-top:26px; border-top:1px solid rgba(255,255,255,.14);
+    padding-top:14px; overflow-x:auto;
+  }
+  .trust-strip .t-item{
+    flex:1; min-width:78px; text-align:center; font-size:9.5px; color:#bcc7c2;
+    display:flex; flex-direction:column; align-items:center; gap:5px;
+    padding: 0 6px; border-right:1px solid rgba(255,255,255,.1);
+  }
+  .trust-strip .t-item:last-child{ border-right:none; }
+  .trust-strip svg{ width:16px; height:16px; color:var(--gold); }
+
+  /* ---------- Section shared ---------- */
+  .section{ padding: 30px 18px 6px; }
+  .sec-head{ display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:16px; }
+  .sec-eyebrow{ font-size:10.5px; letter-spacing:1.8px; color:var(--gold-deep); font-weight:700; text-transform:uppercase; }
+  .sec-title{ font-size:21px; font-weight:600; margin-top:3px; }
+  .sec-link{ font-size:11.5px; font-weight:600; color:var(--emerald); border-bottom:1px solid var(--emerald); padding-bottom:1px; }
+
+  /* ---------- Category rail ---------- */
+  .cat-rail{
+    display:flex; gap:12px; overflow-x:auto; padding-bottom:6px;
+    scroll-snap-type: x proximity;
+  }
+  .cat-rail::-webkit-scrollbar{ display:none; }
+  .cat-chip{
+    scroll-snap-align:start; flex:0 0 auto;
+    width:92px; background:var(--card); border:1px solid var(--line);
+    border-radius:16px; padding:16px 8px 12px; text-align:center;
+  }
+  .cat-chip .ci{
+    width:38px; height:38px; margin:0 auto 8px; border-radius:50%;
+    background: var(--cream); display:flex; align-items:center; justify-content:center;
+  }
+  .cat-chip .ci svg{ width:19px; height:19px; color:var(--emerald); }
+  .cat-chip .cn{ font-size:11px; font-weight:700; }
+  .cat-chip .cc{ font-size:9px; color:var(--muted); margin-top:2px; }
+
+  /* ---------- Products ---------- */
+  .prod-grid{ display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:6px; }
+  .prod-card{
+    background:var(--card); border-radius:16px; overflow:hidden;
+    border:1px solid var(--line);
+  }
+  .prod-media{
+    aspect-ratio:1/1; background:linear-gradient(160deg,#1c1a17,#0f0d0a);
+    display:flex; align-items:center; justify-content:center; position:relative;
+  }
+  .prod-media svg{ width:52px; height:52px; color:var(--gold); opacity:.9; }
+  .tag-sale{
+    position:absolute; top:9px; left:9px;
+    background:var(--gold); color:var(--ink);
+    font-size:9px; font-weight:800; letter-spacing:.3px;
+    padding:3px 8px; border-radius:5px;
+  }
+  .prod-body{ padding:11px 12px 13px; }
+  .prod-stars{ display:flex; align-items:center; gap:3px; margin-bottom:5px; }
+  .prod-stars svg{ width:10px; height:10px; color:var(--gold); }
+  .prod-stars span{ font-size:9.5px; color:var(--muted); margin-left:3px; }
+  .prod-name{ font-size:12.5px; font-weight:600; line-height:1.35; min-height:33px; }
+  .prod-price{ display:flex; align-items:baseline; gap:6px; margin-top:7px; }
+  .prod-price .old{ font-size:11px; color:var(--muted); text-decoration:line-through; }
+  .prod-price .now{ font-size:16px; font-weight:800; color:var(--emerald); font-family:'Fraunces',serif; }
+  .prod-actions{ display:flex; gap:6px; margin-top:10px; }
+  .mini-btn{
+    flex:1; display:flex; align-items:center; justify-content:center; gap:5px;
+    font-size:10.5px; font-weight:700; padding:8px 4px; border-radius:9px; border:none; cursor:pointer;
+  }
+  .mini-btn svg{ width:13px; height:13px; }
+  .mini-cart{ background:var(--ink); color:var(--gold); }
+  .mini-wa{ background:var(--wa); color:#fff; }
+
+  /* ---------- Value strip ---------- */
+  .value-strip{
+    background:var(--ink); color:#fff; margin:34px -18px 0;
+    padding:26px 18px; display:grid; grid-template-columns:repeat(2,1fr); gap:18px 10px;
+  }
+  .value-item{ display:flex; gap:10px; align-items:flex-start; }
+  .value-item svg{ width:20px; height:20px; color:var(--gold); flex-shrink:0; margin-top:2px; }
+  .value-item h4{ font-size:12px; font-weight:700; margin-bottom:2px; }
+  .value-item p{ font-size:10px; color:#a9a49a; line-height:1.4; }
+
+  /* ---------- Footer ---------- */
+  footer{ background:var(--charcoal); color:#c7c2b6; padding:32px 18px 26px; margin-top:0; }
+  .foot-brand{ color:#fff; font-family:'Fraunces',serif; font-size:18px; margin-bottom:6px; }
+  footer p{ font-size:11.5px; line-height:1.7; }
+  .foot-contact{ margin-top:14px; display:flex; flex-direction:column; gap:8px; font-size:12px; }
+  .foot-contact a{ display:flex; align-items:center; gap:8px; color:#e4dfd2; }
+  .foot-contact svg{ width:15px; height:15px; color:var(--gold); }
+  .foot-rule{ border:none; border-top:1px solid #35302a; margin:18px 0; }
+  .foot-copy{ font-size:10.5px; color:#847f74; }
+
+  /* ---------- Sticky bottom order bar ---------- */
+  .order-bar{
+    position:fixed; bottom:0; left:0; right:0; z-index:90;
+    background:#fff; border-top:1px solid var(--line);
+    display:flex; gap:10px; padding:10px 14px;
+    box-shadow:0 -6px 18px rgba(0,0,0,.06);
+  }
+  .order-bar .call{
+    flex:0 0 52px; display:flex; align-items:center; justify-content:center;
+    border:1.5px solid var(--ink); border-radius:12px; color:var(--ink);
+  }
+  .order-bar .call svg{ width:19px; height:19px; }
+  .order-bar .wa{
+    flex:1; display:flex; align-items:center; justify-content:center; gap:8px;
+    background:var(--wa); color:#fff; border-radius:12px; font-weight:700; font-size:14px;
+  }
+  .order-bar .wa svg{ width:19px; height:19px; }
+
+  @media (min-width:680px){
+    .hero h1{ font-size:42px; max-width:420px; }
+    .hero p{ max-width:380px; }
+    .prod-grid{ grid-template-columns:repeat(4,1fr); }
+    .value-strip{ grid-template-columns:repeat(4,1fr); }
+    .order-bar{ display:none; }
+    body{ padding-bottom:0; }
+  }
+</style>
 </head>
-<body style="font-family: Arial, sans-serif; text-align:center; margin-top:50px;">
+<body>
 
-    <h1>Welcome to My Store</h1>
-    <p>Check out our amazing products at unbeatable prices!</p>
+<header>
+  <div class="header-row">
+    <a href="#top" class="brand">
+      <div class="brand-mark">S</div>
+      <div>
+        <div class="brandname">Syed <em>Store</em></div>
+        <span class="brand-tag">Premium Quality · Honest Prices</span>
+      </div>
+    </a>
+    <div class="header-actions">
+      <a href="#" class="icon-btn" aria-label="Search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      </a>
+      <a href="#" class="icon-btn" aria-label="Cart">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.5 3h2l2.6 12.6a2 2 0 0 0 2 1.6h8.8a2 2 0 0 0 2-1.6L22 7H6"/></svg>
+        <span class="badge">2</span>
+      </a>
+    </div>
+  </div>
+</header>
 
-    <button onclick="trackPurchase()" style="padding:12px 24px; font-size:16px; background-color:#1877f2; color:white; border:none; border-radius:6px; cursor:pointer;">
-        Buy Now
-    </button>
+<section class="hero" id="top">
+  <div class="hero-ring"></div>
+  <div class="hero-ring2"></div>
+  <div class="wrap">
+    <span class="kicker"><span class="seed"></span>New Season Picks</span>
+    <h1>Quality worth<br><span class="accent">talking about.</span></h1>
+    <p>Shoes, electronics &amp; watches — chosen for durability, priced without the markup.</p>
+    <div class="hero-ctas">
+      <a href="#shop" class="btn btn-gold">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        Shop Now
+      </a>
+      <a href="#" class="btn btn-outline">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.5 6.5a5 5 0 1 1-7.1 7.1L2 22l1-8.6a5 5 0 0 1 7.1-7.1Z"/></svg>
+        Chat With Us
+      </a>
+    </div>
+    <div class="trust-strip">
+      <div class="t-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 3 6v6c0 5 3.8 9.4 9 10 5.2-.6 9-5 9-10V6l-9-4Z"/></svg>Premium Quality</div>
+      <div class="t-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="7" width="15" height="10" rx="1.5"/><path d="M16 10h4l3 3v4h-7"/><circle cx="6" cy="19" r="2"/><circle cx="18.5" cy="19" r="2"/></svg>Fast Delivery</div>
+      <div class="t-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V8a5 5 0 0 1 10 0v3"/></svg>Secure Payment</div>
+      <div class="t-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 9-9"/><path d="M3 4v8h8"/></svg>Easy Returns</div>
+    </div>
+  </div>
+</section>
 
-    <script>
-    function trackPurchase() {
-        // Purchase event track karega
-        fbq('track', 'Purchase', {
-            value: 20.00,      // apni product ki actual price yahan daalein
-            currency: 'USD'    // apni currency yahan set karein (e.g. PKR)
-        });
+<section class="section" id="categories">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <div class="sec-eyebrow">Browse</div>
+        <div class="sec-title">Shop by Category</div>
+      </div>
+    </div>
+    <div class="cat-rail">
+      <div class="cat-chip">
+        <div class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 15v-3a4 4 0 0 1 4-4h1l3-3 3 3h1a4 4 0 0 1 4 4v3"/><path d="M2 15h20l-1.5 5a2 2 0 0 1-2 1.5H5.5a2 2 0 0 1-2-1.5L2 15Z"/></svg></div>
+        <div class="cn">Shoes</div>
+        <div class="cc">1 item</div>
+      </div>
+      <div class="cat-chip">
+        <div class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 14v-2a9 9 0 0 1 18 0v2"/><rect x="1" y="14" width="6" height="7" rx="2"/><rect x="17" y="14" width="6" height="7" rx="2"/></svg></div>
+        <div class="cn">Electronics</div>
+        <div class="cc">2 items</div>
+      </div>
+      <div class="cat-chip">
+        <div class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="7"/><path d="M12 9v3l2 2"/><path d="M9 3h6M9 21h6"/></svg></div>
+        <div class="cn">Watches</div>
+        <div class="cc">1 item</div>
+      </div>
+      <div class="cat-chip">
+        <div class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg></div>
+        <div class="cn">Gadgets</div>
+        <div class="cc">Coming soon</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-        // Yahan aap redirect ya thank-you message add kar sakte hain
-        alert('Thank you for your purchase!');
-    }
-    </script>
+<section class="section" id="shop">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <div class="sec-eyebrow">Hand-picked</div>
+        <div class="sec-title">Featured Products</div>
+      </div>
+      <a href="#" class="sec-link">View all</a>
+    </div>
+
+    <div class="prod-grid">
+
+      <div class="prod-card">
+        <div class="prod-media">
+          <span class="tag-sale">-20%</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 15v-3a4 4 0 0 1 4-4h1l3-3 3 3h1a4 4 0 0 1 4 4v3"/><path d="M2 15h20l-1.5 5a2 2 0 0 1-2 1.5H5.5a2 2 0 0 1-2-1.5L2 15Z"/></svg>
+        </div>
+        <div class="prod-body">
+          <div class="prod-stars">
+            <svg fill="currentColor" viewBox="0 0 20 20"><path d="M10 1l2.6 5.9L19 7.6l-4.5 4.3L15.8 19 10 15.6 4.2 19l1.3-7.1L1 7.6l6.4-.7L10 1Z"/></svg>
+            <svg fill="currentColor" viewBox="0 0 20 20"><path d="M10 1l2.6 5.9L19 7.6l-4.5 4.3L15.8 19 10 15.6 4.2 19l1.3-7.1L1 7.6l6.4-.7L10 1Z"/></svg>
+            <svg fill="currentColor" viewBox="0 0 20 20"><path d="M10 1l2.6 5.9L19 7.6l-4.5 4.3L15.8 19 10 15.6 4.2 19l1.3-7.1L1 7.6l6.4-.7L10 1Z"/></svg>
+            <svg fill="currentColor" viewBox="0 0 20 20"><path d="M10 1l2.6 5.9L19 7.6l-4.5 4.3L15.8 19 10 15.6 4.2 19l1.3-7.1L1 7.6l6.4-.7L10 1Z"/></svg>
+            <span>4.8</span>
+          </div>
+          <div class="prod-name">Premium Black &amp; Gold Leather Sneakers</div>
+          <div class="prod-price"><span class="old">Rs 3,500</span><span class="now">Rs 2,799</span></div>
+          <div class="prod-actions">
+            <button class="mini-btn mini-cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.5 3h2l2.6 12.6a2 2 0 0 0 2 1.6h8.8a2 2 0 0 0 2-1.6L22 7H6"/></svg>Cart</button>
+            <a class="mini-btn mini-wa" href="https://wa.me/{{WHATSAPP_NUMBER}}?text=I%20want%20to%20order%3A%20Premium%20Black%20%26%20Gold%20Sneakers" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 6.5a5 5 0 1 1-7.1 7.1L2 22l1-8.6a5 5 0 0 1 7.1-7.1Z"/></svg>Order</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="prod-card">
+        <div class="prod-media">
+          <span class="tag-sale">-12%</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 14a9 9 0 0 1 18 0"/><rect x="1" y="14" width="6" height="7" rx="2"/><rect x="17" y="14" width="6" height="7" rx="2"/></svg>
+        </div>
+        <div class="prod-body">
+          <div class="prod-stars">
+            <svg fill="currentColor" viewBox="0 0 20 20"><path d="M10 1l2.6 5.9L19 7.6l-4.5 4.3L15.8 19 10 15.6 4.2 19l1.3-7.1L1 7.6l6.4-.7L10 1Z"/></svg>
+            <svg fill="currentColor" viewBox="0 0 20 20"><path d="M10 1l2.6 5.9L19 7.6l-4.5 4.3L15.8 19 10 15.6 4.2 19l1.3-7.1L1 7.6l6.4-.7L10 1Z"/></svg>
+            <svg fill="currentColor" viewBox="0 0 20 20"><path d="M10 1l2.6 5.9L19 7.6l-4.5 4.3L15.8 19 10 15.6 4.2 19l1.3-7.1L1 7.6l6.4-.7L10 1Z"/></svg>
+            <svg fill="currentColor" viewBox="0 0 20 20"><path d="M10 1l2.6 5.9L19 7.6l-4.5 4.3L15.8 19 10 15.6 4.2 19l1.3-7.1L1 7.6l6.4-.7L10 1Z"/></svg>
+            <span>4.6</span>
+          </div>
+          <div class="prod-name">Wireless Bluetooth Over-Ear Headphones</div>
+          <div class="prod-price"><span class="old">Rs 2,500</span><span class="now">Rs 2,200</span></div>
+          <div class="prod-actions">
+            <button class="mini-btn mini-cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.5 3h2l2.6 12.6a2 2 0 0 0 2 1.6h8.8a2 2 0 0 0 2-1.6L22 7H6"/></svg>Cart</button>
+            <a class="mini-btn mini-wa" href="https://wa.me/{{WHATSAPP_NUMBER}}?text=I%20want%20to%20order%3A%20Wireless%20Headphones" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 6.5a5 5 0 1 1-7.1 7.1L2 22l1-8.6a5 5 0 0 1 7.1-7.1Z"/></svg>Order</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="prod-card">
+        <div class="prod-media">
+          <span class="tag-sale">-37%</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="7"/><path d="M12 9v3l2 2"/><path d="M9 3h6M9 21h6"/></svg>
+        </div>
+        <div class="prod-body">
+          <div class="prod-stars">
+            <svg fill="currentColor" viewBox="0 0 20 20"><path d="M10 1l2.6 5.9L19 7.6l-4.5 4.3L15.8 19 10 15.6 4.2 19l1.3-7.1L1 7.6l6.4-.7L10 1Z"/></svg>
+            <svg fill="currentColor" viewBox="0 0 20 20"><path d="M10 1l2.6 5.9L19 7.6l-4.5 4.3L15.8 19 10 15.6 4.2 19l1.3-7.1L1 7.6l6.4-.7L10 1Z"/></svg>
+            <svg fill="currentColor" viewBox="0 0 20 20"><path d="M10 1l2.6 5.9L19 7.6l-4.5 4.3L15.8 19 10 15.6 4.2 19l1.3-7.1L1 7.6l6.4-.7L10 1Z"/></svg>
+            <svg fill="currentColor" viewBox="0 0 20 20"><path d="M10 1l2.6 5.9L19 7.6l-4.5 4.3L15.8 19 10 15.6 4.2 19l1.3-7.1L1 7.6l6.4-.7L10 1Z"/></svg>
+            <span>4.9</span>
+          </div>
+          <div class="prod-name">Luxury Men's Chronograph Watch</div>
+          <div class="prod-price"><span class="old">Rs 3,500</span><span class="now">Rs 2,200</span></div>
+          <div class="prod-actions">
+            <button class="mini-btn mini-cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.5 3h2l2.6 12.6a2 2 0 0 0 2 1.6h8.8a2 2 0 0 0 2-1.6L22 7H6"/></svg>Cart</button>
+            <a class="mini-btn mini-wa" href="https://wa.me/{{WHATSAPP_NUMBER}}?text=I%20want%20to%20order%3A%20Luxury%20Chronograph%20Watch" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 6.5a5 5 0 1 1-7.1 7.1L2 22l1-8.6a5 5 0 0 1 7.1-7.1Z"/></svg>Order</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="prod-card">
+        <div class="prod-media">
+          <span class="tag-sale">-7%</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z"/></svg>
+        </div>
+        <div class="prod-body">
+          <div class="prod-stars">
+            <svg fill="currentColor" viewBox="0 0 20 20"><path d="M10 1l2.6 5.9L19 7.6l-4.5 4.3L15.8 19 10 15.6 4.2 19l1.3-7.1L1 7.6l6.4-.7L10 1Z"/></svg>
+            <svg fill="currentColor" viewBox="0 0 20 20"><path d="M10 1l2.6 5.9L19 7.6l-4.5 4.3L15.8 19 10 15.6 4.2 19l1.3-7.1L1 7.6l6.4-.7L10 1Z"/></svg>
+            <svg fill="currentColor" viewBox="0 0 20 20"><path d="M10 1l2.6 5.9L19 7.6l-4.5 4.3L15.8 19 10 15.6 4.2 19l1.3-7.1L1 7.6l6.4-.7L10 1Z"/></svg>
+            <svg fill="currentColor" viewBox="0 0 20 20"><path d="M10 1l2.6 5.9L19 7.6l-4.5 4.3L15.8 19 10 15.6 4.2 19l1.3-7.1L1 7.6l6.4-.7L10 1Z"/></svg>
+            <span>4.5</span>
+          </div>
+          <div class="prod-name">30W GaN Fast Charger — PD USB-C</div>
+          <div class="prod-price"><span class="old">Rs 1,500</span><span class="now">Rs 1,399</span></div>
+          <div class="prod-actions">
+            <button class="mini-btn mini-cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.5 3h2l2.6 12.6a2 2 0 0 0 2 1.6h8.8a2 2 0 0 0 2-1.6L22 7H6"/></svg>Cart</button>
+            <a class="mini-btn mini-wa" href="https://wa.me/{{WHATSAPP_NUMBER}}?text=I%20want%20to%20order%3A%2030W%20GaN%20Fast%20Charger" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 6.5a5 5 0 1 1-7.1 7.1L2 22l1-8.6a5 5 0 0 1 7.1-7.1Z"/></svg>Order</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="value-strip">
+    <div class="value-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 3 6v6c0 5 3.8 9.4 9 10 5.2-.6 9-5 9-10V6l-9-4Z"/></svg>
+      <div><h4>Premium Quality</h4><p>Every item checked before it ships.</p></div>
+    </div>
+    <div class="value-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20"/></svg>
+      <div><h4>Honest Pricing</h4><p>No inflated tags, no surprise fees.</p></div>
+    </div>
+    <div class="value-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="7" width="15" height="10" rx="1.5"/><path d="M16 10h4l3 3v4h-7"/><circle cx="6" cy="19" r="2"/><circle cx="18.5" cy="19" r="2"/></svg>
+      <div><h4>Fast Delivery</h4><p>Nationwide shipping, tracked orders.</p></div>
+    </div>
+    <div class="value-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.5 6.5a5 5 0 1 1-7.1 7.1L2 22l1-8.6a5 5 0 0 1 7.1-7.1Z"/></svg>
+      <div><h4>Real Support</h4><p>Message us anytime on WhatsApp.</p></div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="foot-brand">Syed Store</div>
+  <p>Quality products at your doorstep. Premium quality, honest prices, happy you.</p>
+  <div class="foot-contact">
+    <a href="tel:+{{WHATSAPP_NUMBER}}">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .3 2 .6 2.9a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.9.5 2.9.6a2 2 0 0 1 1.7 2Z"/></svg>
+      +{{WHATSAPP_NUMBER}}
+    </a>
+    <a href="https://wa.me/{{WHATSAPP_NUMBER}}" target="_blank">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 6.5a5 5 0 1 1-7.1 7.1L2 22l1-8.6a5 5 0 0 1 7.1-7.1Z"/></svg>
+      Chat on WhatsApp
+    </a>
+  </div>
+  <hr class="foot-rule">
+  <p class="foot-copy">© 2026 Syed Store. All rights reserved.</p>
+</footer>
+
+<div class="order-bar">
+  <a class="call" href="tel:+{{WHATSAPP_NUMBER}}" aria-label="Call">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .3 2 .6 2.9a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.9.5 2.9.6a2 2 0 0 1 1.7 2Z"/></svg>
+  </a>
+  <a class="wa" href="https://wa.me/{{WHATSAPP_NUMBER}}?text=Hi%2C%20I%27m%20interested%20in%20your%20products" target="_blank">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 6.5a5 5 0 1 1-7.1 7.1L2 22l1-8.6a5 5 0 0 1 7.1-7.1Z"/></svg>
+    Order on WhatsApp
+  </a>
+</div>
 
 </body>
 </html>
