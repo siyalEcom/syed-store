@@ -1,33 +1,60 @@
 import os
 import subprocess
+from moviepy.editor import VideoFileClip
 
-print("=== TikTok AI Automation Pipeline Started ===")
+print("=== Professional TikTok Automation Pipeline Started ===")
 
-# Yahan aap jitne marzi YouTube shorts ya videos ke links daal dein
+# Yahan apna YouTube video ka link dalein
 YOUTUBE_URLS = [
-    "https://www.youtube.com/shorts/YOUR_VIDEO_ID_HERE", # Yahan apna link dalein
+    "https://www.youtube.com/shorts/YOUR_VIDEO_ID_HERE",
 ]
 
-def download_videos():
-    print("Step 1: Downloading videos from YouTube...")
+def process_videos():
+    print("Step 1: Downloading & Processing videos professionally...")
     
     for i, url in enumerate(YOUTUBE_URLS):
-        output_filename = f"video_{i+1}.mp4"
+        raw_filename = f"raw_video_{i+1}.mp4"
+        final_filename = f"final_video_{i+1}.mp4"
         
-        # yt-dlp command to download best quality mp4
-        command = [
+        # 1. Download video using yt-dlp
+        download_command = [
             "yt-dlp",
             "-f", "bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]",
-            "-o", output_filename,
+            "-o", raw_filename,
             url
         ]
         
         try:
-            subprocess.run(command, check=True)
-            print(f"Successfully downloaded: {output_filename}")
+            print(f"Downloading: {url}")
+            subprocess.run(download_command, check=True)
+            
+            # 2. Professional Editing using MoviePy
+            print(f"Applying professional edits to {raw_filename}...")
+            clip = VideoFileClip(raw_filename)
+            
+            # Agar video 60 seconds se lambi hai toh cut kar lein
+            if clip.duration > 60:
+                clip = clip.subclip(0, 60)
+            
+            # Save processed video with high quality settings
+            clip.write_videofile(
+                final_filename, 
+                codec="libx264", 
+                audio_codec="aac", 
+                fps=30,
+                preset="medium"
+            )
+            
+            clip.close()
+            print(f"Successfully processed and saved: {final_filename}")
+            
+            # Raw file delete kar dein taake cloud storage bache
+            if os.path.exists(raw_filename):
+                os.remove(raw_filename)
+                
         except Exception as e:
-            print(f"Error downloading {url}: {e}")
+            print(f"Error processing {url}: {e}")
 
 if __name__ == "__main__":
-    download_videos()
-    print("=== Pipeline Step Finished ===")
+    process_videos()
+    print("=== Pipeline Step Finished Successfully ===")
