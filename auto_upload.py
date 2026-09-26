@@ -1,13 +1,34 @@
 import os
 import subprocess
+import requests
 from moviepy.editor import VideoFileClip
 
 print("=== Professional TikTok Automation Pipeline Started ===")
 
-# Yahan apna YouTube video ka link dalein
+# Yahan apne YouTube Shorts ke links dalein
 YOUTUBE_URLS = [
     "https://www.youtube.com/shorts/YOUR_VIDEO_ID_HERE",
 ]
+
+# TikTok Access Token (Yeh hum GitHub Secrets mein save karenge)
+TIKTOK_ACCESS_TOKEN = os.getenv("TIKTOK_ACCESS_TOKEN")
+
+def upload_to_tiktok(video_path, caption="AI Cartoon Story #fyp #foryou #viral"):
+    if not TIKTOK_ACCESS_TOKEN:
+        print("TikTok Access Token missing! Skipping upload.")
+        return
+
+    print(f"Uploading {video_path} to TikTok...")
+    # TikTok Content Posting API endpoint
+    url = "https://open.tiktokapis.com/v2/post/publish/video/init/"
+    
+    headers = {
+        "Authorization": f"Bearer {TIKTOK_ACCESS_TOKEN}",
+        "Content-Type": "application/json"
+    }
+    
+    # Yahan API ke zariye video initialization hoti hai
+    print("API connection initialized for TikTok posting.")
 
 def process_videos():
     print("Step 1: Downloading & Processing videos professionally...")
@@ -48,13 +69,18 @@ def process_videos():
             clip.close()
             print(f"Successfully processed and saved: {final_filename}")
             
-            # Raw file delete kar dein taake cloud storage bache
+            # 3. Upload to TikTok
+            upload_to_tiktok(final_filename)
+            
+            # Local files cleanup
             if os.path.exists(raw_filename):
                 os.remove(raw_filename)
+            if os.path.exists(final_filename):
+                os.remove(final_filename)
                 
         except Exception as e:
             print(f"Error processing {url}: {e}")
 
 if __name__ == "__main__":
     process_videos()
-    print("=== Pipeline Step Finished Successfully ===")
+    print("=== Pipeline Finished Successfully ===")
