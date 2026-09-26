@@ -6,7 +6,9 @@ from moviepy.editor import VideoFileClip
 print("=== Professional TikTok Automation Pipeline Started ===")
 
 # Yahan apne YouTube Shorts ke links dalein
-YOUTUBE_URLS = [
+YOUTUBE_URLS = [YOUTUBE_URLS = [
+    "https://www.youtube.com/shorts/8X28_8d8_88", 
+]
     "https://www.youtube.com/shorts/YOUR_VIDEO_ID_HERE",
 ]
 
